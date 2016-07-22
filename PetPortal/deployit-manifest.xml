@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<udm.DeploymentPackage version="2.1-1" application="PetPortal">
+  <satisfiesReleaseNotes>true</satisfiesReleaseNotes>
+  <satisfiesPerformanceTested>false</satisfiesPerformanceTested>
+  <deployables>
+    <tests2.HttpRequestTest name="Check-PetPortal-On-Webserver-Test">
+      <url>http://{{APACHE_HOST}}:{{APACHE_PORT}}/</url>
+      <expectedResponseText>{{PETPORTAL_TITLE}}</expectedResponseText>
+    </tests2.HttpRequestTest>
+    <tests2.HttpRequestTest name="Check-PetPortal-to-PetClinic-ProxyPass-Test">
+      <url>http://{{APACHE_HOST}}:{{APACHE_PORT}}/{{PETCLINIC_CONTEXT_ROOT}}/</url>
+      <expectedResponseText>Display all veterinarians</expectedResponseText>
+    </tests2.HttpRequestTest>
+    <www.WebContent name="webContent" file="webContent/PetPortal_pages">
+      <scanPlaceholders>true</scanPlaceholders>
+    </www.WebContent>
+    <jbossdm.DataSourceSpec name="PetClinic-ds-on-jboss">
+      <jndiName>java:/jdbc/pets</jndiName>
+      <driverName>{{DB_DRIVER}}</driverName>
+      <username>{{DB_USERNAME}}</username>
+      <password>{{DB_PASSWORD}}</password>
+      <connectionUrl>{{DB_URL}}</connectionUrl>
+    </jbossdm.DataSourceSpec>
+    <www.ApacheProxyPassSpec name="PetPortal-to-PetClinic-ProxyPass">
+      <from>/{{PETCLINIC_CONTEXT_ROOT}}</from>
+      <to>http://{{APPSERVER_HOST}}:{{APPSERVER_PORT}}/{{PETCLINIC_CONTEXT_ROOT}}</to>
+      <reverse>true</reverse>
+    </www.ApacheProxyPassSpec>
+    <tests2.HttpRequestTest name="Check-PetClinic-On-Appserver-Test">
+      <url>http://{{APPSERVER_HOST}}:{{APPSERVER_PORT}}/{{PETCLINIC_CONTEXT_ROOT}}</url>
+      <expectedResponseText>Display all veterinarians</expectedResponseText>
+    </tests2.HttpRequestTest>
+    <jee.Ear name="PetClinic-ear" file="PetClinic-ear/PetClinic-1.0.ear">
+      <scanPlaceholders>false</scanPlaceholders>
+    </jee.Ear>
+    <sql.SqlScripts name="sql" file="sql/sql">
+      <scanPlaceholders>true</scanPlaceholders>
+    </sql.SqlScripts>
+  </deployables>
+</udm.DeploymentPackage>

@@ -11,7 +11,7 @@
       <url>http://{{APACHE_HOST}}:{{APACHE_PORT}}/{{PETCLINIC_CONTEXT_ROOT}}/</url>
       <expectedResponseText>Display all veterinarians</expectedResponseText>
     </tests2.HttpRequestTest>
-    <www.WebContent name="webContent" file="webContent/PetPortal_pages">
+    <www.WebContent name="webContent" file="PetPortal_pages">
       <scanPlaceholders>true</scanPlaceholders>
     </www.WebContent>
     <jbossdm.DataSourceSpec name="PetClinic-ds-on-jboss">
@@ -33,7 +33,7 @@
     <jee.Ear name="PetClinic-ear" file="PetClinic-ear/PetClinic-1.0.ear">
       <scanPlaceholders>false</scanPlaceholders>
     </jee.Ear>
-    <sql.SqlScripts name="sql" file="sql/sql">
+    <sql.SqlScripts name="sql" file="sql">
       <scanPlaceholders>true</scanPlaceholders>
     </sql.SqlScripts>
   </deployables>

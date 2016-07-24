@@ -30,7 +30,7 @@
       <url>http://{{APPSERVER_HOST}}:{{APPSERVER_PORT}}/{{PETCLINIC_CONTEXT_ROOT}}</url>
       <expectedResponseText>Display all veterinarians</expectedResponseText>
     </tests2.HttpRequestTest>
-    <jee.Ear name="PetClinic-ear" file="PetClinic-ear/PetClinic-1.0.ear">
+    <jee.Ear name="PetClinic-ear" file="PetClinic-1.0.ear">
       <scanPlaceholders>false</scanPlaceholders>
     </jee.Ear>
     <sql.SqlScripts name="sql" file="sql">

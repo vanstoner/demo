@@ -7,7 +7,7 @@ xlr {
     folder('BitBucket')
     scheduledStartDate Date.parse("yyyy-MM-dd'T'HH:mm:ssZ", '2019-12-17T09:00:00+0000')
     phases {
-      phase('New Phase') {
+      phase('Robs Phase') {
         
       }
     }
